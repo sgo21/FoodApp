@@ -157,3 +157,34 @@ h1 {
   color: #40b48e;
   font-size: 1.3rem;
 }
+
+ 
+.nav-bar {
+  overflow: hidden;
+  background-color: #111713;
+}
+
+.nav-bar p {
+      float:left;
+      display: block;
+      color:white;
+      text-align: center;
+      padding: 14px 16px ;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: white;
+  padding: 14px 16px;
+
+}
+
+.nav-bar a:hover {
+  background-color: green;
+  color: white;
+}  
+
+.nav-bar a.active {
+  background-color: green;
+  color: #111713;
+}
