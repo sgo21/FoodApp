@@ -40,7 +40,7 @@ const Home = () => {
     return (
        <div>
 
-           <h1>Home</h1>
+           {/* <h1>Home</h1> */}
            {/* <p>Home page body content</p> */}
 
   <form onSubmit={onSubmit} className="search-form">

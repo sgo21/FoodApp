@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import SignUp from "./SignUp";
+
+
+//import SignUp from "./SignUp";
 
 
 const LogIn = () => {
@@ -67,18 +69,22 @@ const LogIn = () => {
 // };
     return (
        <div>
-          <h1>log in</h1>
-          <h3>Login Authentication</h3>
-        <p>If you have an account, login below</p>
-        <div className="container">
-          <form action="/action_page.php">
-            <label htmlFor="usrname">Username</label>
-            <input type="text" id="usrname" name="usrname" required />
-            <label htmlFor="psw">Password</label>
-            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
-            <input type="submit" defaultValue="Submit" />
-          </form>
+          <h3>Log In</h3>
+          <p>If you have an account, login below</p>
+ 
+          <div className="container">
+            <form action="/action_page.php">
+              
+              <label htmlFor="usrname">Username</label>
+              <input type="text" id="usrname" name="usrname" required />
+
+              <label htmlFor="psw">Password</label>
+              <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required />
+              
+              <input type="submit" defaultValue="Submit" />
+            </form>
         </div>
+
         <div id="message">
           <h3>Password must contain the following:</h3>
           <p id="letter" className="invalid">A <b>lowercase</b> letter</p>
@@ -87,8 +93,8 @@ const LogIn = () => {
           <p id="length" className="invalid">Minimum <b>8 characters</b></p>
         </div>
         
-        <button onClick={() => setShow(!show)}>Sign Up</button>
-      {show && <SignUp />}
+        {/* <button onClick={() => setShow(!show)}>Sign Up</button>
+      {show && <SignUp />} */}
                 
        </div>
     );

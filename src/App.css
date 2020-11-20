@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap");
 
 * {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -13,19 +13,23 @@ html {
   font-size: 62.5%;
 }
 
+div {
+  font-size: 130%;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #b39b4a
 }
 
 h1 {
-  font-size: 8rem;
+  /* font-size: 8rem; */
   letter-spacing: 0.1rem;
-  font-style: italic;
-  color: #40b48e;
+  color: #FFFFFF;
   text-shadow: 0 0.2rem 5rem rgb(119, 115, 115);
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   margin: 4rem 0;
 }
 
@@ -38,6 +42,7 @@ h1 {
   background-color: #d3d3d3;
   border-radius: 0.5rem;
   margin-bottom: 5rem;
+  margin-top: 5rem;
   box-shadow: 1rem 2rem 5rem #aaa;
   position: relative;
 }
@@ -78,7 +83,7 @@ h1 {
 .search-form input[type="submit"] {
   width: 25%;
   text-transform: uppercase;
-  background-color: #40b48e;
+  background-color: #c3015b;
   color: #fff;
 }
 
@@ -131,7 +136,7 @@ h1 {
   font-size: 2rem;
   text-transform: uppercase;
   color: #fff;
-  background-color: #40b48e;
+  background-color:#b39b4a;
   border: none;
   border-radius: 0.5rem;
   height: 3rem;
@@ -161,7 +166,8 @@ h1 {
  
 .nav-bar {
   overflow: hidden;
-  background-color: #111713;
+  background-color: #B39B4A;
+  text-align:center;
 }
 
 .nav-bar p {
@@ -180,14 +186,18 @@ h1 {
 }
 
 .nav-bar a:hover {
-  background-color: green;
+  background-color: black;
   color: white;
 }  
 
-.nav-bar a.active {
+/* .nav-bar a.active {
+  background-color: black;
+  color: white;
+} */
+
+/* NavLink {
   background-color: green;
   color: #111713;
-}
-
+} */
 
 

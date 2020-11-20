@@ -1,26 +1,21 @@
 // import React, { useState } from "react";
 import React from 'react';
-
 import "./App.css";
-import Axios from "axios";
-import { v4 as uuidv4 } from "uuid";
-import Recipe from "./components/Recipe";
-import Alert from "./components/Alert";
-
+// import Axios from "axios";
+// import { v4 as uuidv4 } from "uuid";
+// import Recipe from "./components/Recipe";
+// import Alert from "./components/Alert";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import React, { Component } from 'react';
-
 import Home from './components/Home';
 import About from './components/About';
-import MyProfile from './components/MyProfile';
 import LogIn from './components/LogIn';
 import Error from './components/Error';
 import Navigation from './components/Navigation';
 
 
-
-
 function App() {
+
+
   // const [query, setQuery] = useState("");
   // const [recipes, setRecipes] = useState([]);
   // const [alert, setAlert] = useState("");
@@ -57,16 +52,16 @@ function App() {
       <h1>Food Searching App</h1>
 
       <BrowserRouter>
-        <div>
+          <div className="nav-bar">
           <Navigation />
             <Switch>
-             <Route path="/" component={Home} exact/>
-             <Route path="/about" component={About}/>
-             <Route path="/MyProfile" component={MyProfile}/>
-             <Route path="/LogIn" component={LogIn}/>
+            <Route path="/" component={Home} exact/>
+            <Route path="/LogIn" component={LogIn}/>
+            <Route path="/about" component={About}/>
+            
             <Route component={Error}/>
            </Switch>
-        </div> 
+           </div>
       </BrowserRouter>
 
         {/* <form onSubmit={onSubmit} className="search-form">
