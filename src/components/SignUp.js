@@ -18,7 +18,11 @@ const SignUp = ({ history }) => {
     }
   }, [history]);
 
-  const onLogin = () => {
+  function onLogin({ history }) {
+    history.push('/LogIn');
+  }
+
+  function onLogin(){
     return  <Redirect  to="/LogIn" />
  }
 
@@ -34,9 +38,9 @@ const SignUp = ({ history }) => {
           Password
           <input name="password" type="password" placeholder="Password" />
         </label>
-        <button type="submit">Sign Up</button>
+        <button class="button" type="submit">Sign Up</button>
       </form>
-      <button>Already have an account? Log In.</button>
+      <button class="button" type="submit" onClick={onLogin}>Already have an account? Log In.</button>
     </div>
   );
 };

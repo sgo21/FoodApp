@@ -59,7 +59,7 @@ const Home = () => {
             {recipes !== [] &&
               recipes.map(recipe => <Recipe key={uuidv4()} recipe={recipe} />)}
           </div>
-          <button onClick={() => app.auth().signOut()}>Sign out</button> 
+          <button class="button" onClick={() => app.auth().signOut()}>Sign out</button> 
        </div>
     );
 }

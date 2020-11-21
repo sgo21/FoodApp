@@ -38,7 +38,7 @@ const LogIn = ({ history }) => {
           Password
           <input name="password" type="password" placeholder="Password" />
         </label>
-        <button type="submit">Log in</button>
+        <button class="button" type="submit">Log in</button>
       </form>
     </div>
   );
