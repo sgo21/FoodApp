@@ -40,6 +40,10 @@ h3 {
   color: white;
 }
 
+label {
+  color: white
+}
+
 .App {
   display: flex;
   flex-direction: column;

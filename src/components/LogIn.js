@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "./../base";
 import { AuthContext } from "./../Auth.js";
+import { NavLink } from "react-router-dom";
 
 const LogIn = ({ history }) => {
   const handleLogin = useCallback(
@@ -34,12 +35,14 @@ const LogIn = ({ history }) => {
           Email
           <input name="email" type="email" placeholder="Email" />
         </label>
+        <br /> 
         <label>
           Password
           <input name="password" type="password" placeholder="Password" />
         </label>
         <button class="button" type="submit">Log in</button>
       </form>
+      <NavLink to="/SignUp" className="nbutton"> New User? Create an account. </NavLink>
     </div>
   );
 };

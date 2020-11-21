@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import app from "./../base";
-import { Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // import "./App.css";
 
 const SignUp = ({ history }) => {
@@ -18,14 +18,6 @@ const SignUp = ({ history }) => {
     }
   }, [history]);
 
-  function onLogin({ history }) {
-    history.push('/LogIn');
-  }
-
-  function onLogin(){
-    return  <Redirect  to="/LogIn" />
- }
-
   return (
     <div>
       <h1>Sign up</h1>
@@ -40,7 +32,8 @@ const SignUp = ({ history }) => {
         </label>
         <button class="button" type="submit">Sign Up</button>
       </form>
-      <button class="button" type="submit" onClick={onLogin}>Already have an account? Log In.</button>
+      <NavLink to="/LogIn" className="nbutton"> Already have an account? Log In. </NavLink>
+      
     </div>
   );
 };

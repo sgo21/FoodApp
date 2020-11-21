@@ -1,13 +1,16 @@
 // import React from 'react';
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // import "./App.css";
 import Axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Recipe from "./Recipe";
 import Alert from "./Alert";
 import app from "./../base";
+import { AuthContext } from "./../Auth.js";
+import { withRouter, Redirect } from "react-router";
  
 const Home = () => {
+
     const [query, setQuery] = useState("");
     const [recipes, setRecipes] = useState([]);
     const [alert, setAlert] = useState("");
@@ -39,10 +42,16 @@ const Home = () => {
       e.preventDefault();
       getData();
     };
+
+    const { currentUser } = useContext(AuthContext);
+
+    if (!currentUser) {
+      console.log("user not defined", currentUser);
+      return <Redirect to="/LogIn" />;
+    }
+
     return (
        <div>
-           {/* <h1>Home</h1> */}
-           {/* <p>Home page body content</p> */}
           <form onSubmit={onSubmit} className="search-form">
             {alert !== "" && <Alert alert={alert} />}
             <input
@@ -59,7 +68,7 @@ const Home = () => {
             {recipes !== [] &&
               recipes.map(recipe => <Recipe key={uuidv4()} recipe={recipe} />)}
           </div>
-          <button class="button" onClick={() => app.auth().signOut()}>Sign out</button> 
+          <button class="button" onClick={() => app.auth().signOut()}>Log Out</button> 
        </div>
     );
 }
