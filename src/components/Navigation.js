@@ -11,6 +11,7 @@ const Navigation = () => {
          {/* <NavLink to="/SavedMeals">  SavedMeals  </NavLink> */}
          <NavLink to="/about">  About </NavLink>
          <NavLink to="/LogIn">  LogIn  </NavLink>
+         <NavLink to="/SignUp">  Sign Up  </NavLink>
        </div>
     );
 }

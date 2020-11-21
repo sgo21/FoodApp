@@ -1,21 +1,23 @@
 // import React, { useState } from "react";
 import React from 'react';
 import "./App.css";
-// import Axios from "axios";
-// import { v4 as uuidv4 } from "uuid";
-// import Recipe from "./components/Recipe";
-// import Alert from "./components/Alert";
+
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import LogIn from './components/LogIn';
+import SignUp from './components/SignUp';
 import Error from './components/Error';
 import Navigation from './components/Navigation';
 import MyProfile from './components/MyProfile';
+import { AuthProvider } from './Auth';
+import { ReactComponent as Logo } from './foodie_logo.svg';
+
 //import fire from './fire';
 
 
-function App() {
+const App = () => {
 
 
 
@@ -71,21 +73,25 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Neha is this working</h1>
-
-      <BrowserRouter>
-          <div className="nav-bar">
-          <Navigation />
-            <Switch>
-            <Route path="/" component={Home} exact/>
-            <Route path="/MyProfile" component={MyProfile}/>
-            <Route path="/LogIn" component={LogIn}/>
-            <Route path="/about" component={About}/>
-            
-            <Route component={Error}/>
-           </Switch>
-           </div>
-      </BrowserRouter>
+     {/* <h1>Neha is this working</h1> */}
+     <div class="Logo">
+      <Logo />
+      </div>
+      <AuthProvider>
+        <BrowserRouter>
+            <div className="nav-bar">
+              <Navigation />
+                <Switch>
+                <Route path="/" component={Home} exact/>
+                <Route path="/LogIn" component={LogIn}/>
+                <Route path="/SignUp" component={SignUp}/>
+                <Route path="/MyProfile" component={MyProfile}/>
+                <Route path="/about" component={About}/>
+                <Route component={Error}/>
+              </Switch>
+            </div>
+        </BrowserRouter>
+      </AuthProvider>
 
         {/* <form onSubmit={onSubmit} className="search-form">
           {alert !== "" && <Alert alert={alert} />}

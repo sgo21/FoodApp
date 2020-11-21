@@ -5,11 +5,13 @@ import Axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Recipe from "./Recipe";
 import Alert from "./Alert";
+import app from "./../base";
  
 const Home = () => {
     const [query, setQuery] = useState("");
     const [recipes, setRecipes] = useState([]);
     const [alert, setAlert] = useState("");
+
   
     const APP_ID = "37ec03f1";
     const APP_KEY = "2083bb6ed4fb63408c27d6714fba7ae6";
@@ -39,28 +41,25 @@ const Home = () => {
     };
     return (
        <div>
-
            {/* <h1>Home</h1> */}
            {/* <p>Home page body content</p> */}
-
-  <form onSubmit={onSubmit} className="search-form">
-    {alert !== "" && <Alert alert={alert} />}
-    <input
-      type="text"
-      name="query"
-      onChange={onChange}
-      value={query}
-      autoComplete="off"
-      placeholder="Search Food"
-    />
-    <input type="submit" value="Search" />
-  </form>
-  <div className="recipes">
-    {recipes !== [] &&
-      recipes.map(recipe => <Recipe key={uuidv4()} recipe={recipe} />)}
-  </div>
-
-
+          <form onSubmit={onSubmit} className="search-form">
+            {alert !== "" && <Alert alert={alert} />}
+            <input
+              type="text"
+              name="query"
+              onChange={onChange}
+              value={query}
+              autoComplete="off"
+              placeholder="Search Food"
+            />
+            <input type="submit" value="Search" />
+          </form>
+          <div className="recipes">
+            {recipes !== [] &&
+              recipes.map(recipe => <Recipe key={uuidv4()} recipe={recipe} />)}
+          </div>
+          <button onClick={() => app.auth().signOut()}>Sign out</button> 
        </div>
     );
 }

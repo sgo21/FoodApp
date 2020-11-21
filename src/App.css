@@ -13,6 +13,20 @@ html {
   font-size: 62.5%;
 }
 
+/* .Logo {
+  /* position: absolute; */
+  /* top: 8px; */
+  /* font-size: 18px; */
+  /* width: 50%;
+  height: auto; */
+  /* opacity: 0.8; */
+  /* max-width:50px;
+  max-height:50px;
+  width: auto;
+  height: auto; */
+  
+/* }  */
+
 div {
   font-size: 130%;
 }
@@ -21,7 +35,7 @@ div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #b39b4a
+  background-color: #ff8d8d
 }
 
 h1 {
@@ -32,6 +46,8 @@ h1 {
   /* text-transform: uppercase; */
   margin: 4rem 0;
 }
+
+
 
 .search-form {
   width: 60rem;
@@ -136,7 +152,7 @@ h1 {
   font-size: 2rem;
   text-transform: uppercase;
   color: #fff;
-  background-color:#b39b4a;
+  background-color:#ff8d8d;
   border: none;
   border-radius: 0.5rem;
   height: 3rem;
@@ -166,7 +182,7 @@ h1 {
  
 .nav-bar {
   overflow: hidden;
-  background-color: #B39B4A;
+  background-color: #ff8d8d;
   text-align:center;
 }
 
@@ -190,10 +206,10 @@ h1 {
   color: white;
 }  
 
-/* .nav-bar a.active {
+.nav-bar a.active {
   background-color: black;
   color: white;
-} */
+}
 
 /* NavLink {
   background-color: green;
