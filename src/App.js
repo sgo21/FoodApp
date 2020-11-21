@@ -11,11 +11,33 @@ import About from './components/About';
 import LogIn from './components/LogIn';
 import Error from './components/Error';
 import Navigation from './components/Navigation';
+import MyProfile from './components/MyProfile';
+//import fire from './fire';
 
 
 function App() {
 
 
+
+
+  // const [user, setUser] = useState({loggedIn: false});
+  
+  // if(!user.loggedIn){
+  //   return <span>User is logged out</span>;
+  // }
+
+  // return <span> User is logged in</span>;
+
+
+  // function onAuthStateChange(){
+  //   return firebase.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       console.log("The user is logged in");
+  //     } else {
+  //       console.log("The user is not logged in");
+  //     }
+  //   });
+  // }
   // const [query, setQuery] = useState("");
   // const [recipes, setRecipes] = useState([]);
   // const [alert, setAlert] = useState("");
@@ -49,13 +71,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Food Searching App</h1>
+      <h1>Neha is this working</h1>
 
       <BrowserRouter>
           <div className="nav-bar">
           <Navigation />
             <Switch>
             <Route path="/" component={Home} exact/>
+            <Route path="/MyProfile" component={MyProfile}/>
             <Route path="/LogIn" component={LogIn}/>
             <Route path="/about" component={About}/>
             
