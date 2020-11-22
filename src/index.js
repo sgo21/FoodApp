@@ -8,6 +8,8 @@ import App from "./App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
+// var database = firebase.database();
+
 // firebase.initializeApp(firebaseConfig);
 // export const auth = firebase.auth();
 // export const firestore = firebase.firestore();
