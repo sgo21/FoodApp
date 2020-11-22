@@ -7,37 +7,31 @@ import app from "./../base";
 const EditProfile = ({ history }) => {
     
   const currentUser = app.auth().currentUser;
-  const [fname, setfname] = useState(currentUser.fname);
-  const [lname, setlname] = useState(currentUser.lname);
-  const [dietPlan, setdietPlan] = useState(currentUser.dietPlan);
   
   const handleSave = useCallback(async event => {
     event.preventDefault();
-    //const { fname, lname, dietPlan } = event.target.elements;
+    const { fname, lname, dietPlan } = event.target.elements;
     
     try {
-        console.log("fname", fname, "lname", lname, "dietPlan", dietPlan);
-        //console.log("hello");
-        // const { currentUser } = useContext(AuthContext);
-        // const userId = currentUser.uid;
-        // const userEmail = currentUser.email;
+        console.log("fname", fname.value, "lname", lname.value, "dietPlan", dietPlan.value);
+ 
+        const userId = currentUser.uid;
 
-        // app.database().ref('users/' + userId).set({
-        //   fname: fname_edit,
-        //   lname: lname_edit,
-        //   dietPlan : dietPlan_edit
-        // });
-
+        const profileData = {
+          uid: currentUser.uid,
+          email: currentUser.email,
+          fname: fname.value,
+          lname: lname.value,
+          dietPlan : dietPlan.value
+        };
+    
+        const updates = {};
+        updates['/users/' + userId] = profileData;
+        // updates['/users-meals/' + userId + '/' + profilePostKey] = profileData;
+    
+        app.database().ref().update(updates);
         
-        // Get a key for a new Post.
-        // const newUserKey = app.database().ref().child('users').push().key;
-
-        // const updates = {};
-        // updates['/users/' + newUserKey] = userData;
-
-        // app.database().ref().update(updates);
-        
-        //history.push("/MyProfile");
+        history.push("/MyProfile");
     } catch (error) {
       alert(error);
     }
@@ -47,12 +41,12 @@ const EditProfile = ({ history }) => {
     <div>
       <h1>Edit Your Profile</h1>
       <form onSubmit={handleSave}>
-          <label>First Name: <input type="text" onChange={event => setfname(event.target.value)}/></label>
+          <label>First Name: <input type="text" name="fname"/></label>
           <br/>
-          <label>Last Name:<input type="text" onChange={event => setlname(event.target.value)}/></label>
+          <label>Last Name:<input type="text" name="lname"/></label>
           <br/>
           <label>Your Diet Plan:
-            <select onChange={event => setdietPlan(event.target.value)}> 
+            <select name="dietPlan"> 
               <option value="none" selected disabled hidden>Select an Option</option>
               <option value="balanced">Balanced</option>
               <option value="high-fiber">High-Fiber</option>
@@ -65,6 +59,7 @@ const EditProfile = ({ history }) => {
           <br/>
           <button type="button" type="submit">Save</button>
       </form>
+
     </div>
   );
 };

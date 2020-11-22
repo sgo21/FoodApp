@@ -9,6 +9,7 @@ const SignUp = ({ history }) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
     try {
+        console.log("email", email, "password", password);
       await app
         .auth()
         .createUserWithEmailAndPassword(email.value, password.value);
@@ -19,17 +20,16 @@ const SignUp = ({ history }) => {
         const userData = {
             user: userId,
             email: userEmail,
-            fname: null,
-            lname: null,
-            dietPlan : null,
+            fname: "",
+            lname: "",
+            dietPlan : "",
             savedMeals: []
         };
         
-        // Get a key for a new Post.
-        const newUserKey = app.database().ref().child('users').push().key;
+        // const newUserKey = app.database().ref().child('users').push().key;
 
         const updates = {};
-        updates['/users/' + newUserKey] = userData;
+        updates['/users/' + userId] = userData;
 
         app.database().ref().update(updates);
         
@@ -58,7 +58,6 @@ const SignUp = ({ history }) => {
         <button class="button" type="submit">Sign Up</button>
       </form>
       <NavLink to="/LogIn" className="nbutton"> Already have an account? Log In. </NavLink>
-      
     </div>
   );
 };
