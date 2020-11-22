@@ -23,7 +23,7 @@ const SignUp = ({ history }) => {
             lname: null,
             dietPlan : null,
             savedMeals: []
-          };
+        };
         
         // Get a key for a new Post.
         const newUserKey = app.database().ref().child('users').push().key;

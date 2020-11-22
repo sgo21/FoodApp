@@ -15,7 +15,6 @@ const Recipe = ({ recipe }) => {
       <h3> {Math.round(calories)} Calories </h3>
       <h3> {dietLabels} </h3>
       <h3> {healthLabels} </h3>
-      {/* <h4> {totalNutrients} </h4> */}
       <button onClick={() => setShow(!show)}>Ingredients</button>
       {show && <RecipeDetails ingredients={ingredients} />}
     </div>

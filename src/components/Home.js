@@ -46,7 +46,6 @@ const Home = () => {
     const { currentUser } = useContext(AuthContext);
 
     if (!currentUser) {
-      console.log("user not defined", currentUser);
       return <Redirect to="/LogIn" />;
     }
 
