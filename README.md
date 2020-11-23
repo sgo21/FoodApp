@@ -1,12 +1,11 @@
 # Comp 426 Final Project- Foodie
+This is our full repository for our Comp 426 final project.
+The project is live at: https://foodapp-35256.web.app/
 
-This project was created by Lasya Pullakhandam, Neha Jakkinpali, Shruti Gopalswami, Elina Shirolkar 
+## Description
+In this project, we are creating an interactive recipe app so that our users can easily find recipes given what ingredients they have at the time. Once they ingredient/food item has been searched, options of foods to make with that item will appear. To do this, we connected the site to a third party service called Edamam. On the site, once a user finds the recipe of the food they like they will be able to like it and all the liked recipes will show up on my profile so that the user can reference these later. The recipes include a calories number and diet labels so that users can track overall nutrition. Additionally, the recipes include ingredients and links so that the user is able to quickly and efficiently make it. The user is required to create a profile which is then saved within our firebase database to save all relevant information. This was the user can easily go back to liked recipes and remember overall nutrition goals.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
+## `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,10 +13,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+## Authors
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Lasya Pullakhandam
+Neha Jakkinpali
+Shruti Gopalswamy
+Elina Shirolkar 
 
 ### `npm run build`
 
