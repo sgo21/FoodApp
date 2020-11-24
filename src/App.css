@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap");
 
 * {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+  /* font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important; */
+  font-family: OCR A Std, monospace;
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -9,11 +10,21 @@
   outline: none;
   
 }
+.container{
+  background-image: url(./example.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+    background-position: center;
+    width: 400px;
+    height: 400px;
+    border: 2px dashed #333;
+}
 
 html {
   font-size: 62.5%;
-  background-color: #aec086;
+  background-color: rgb(0, 0, 0);
   /* border: solid #a08c7d; */
+  background-image: url(./food_pattern.svg);
 }
 
 div {
@@ -34,7 +45,8 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #aec086
+  /* background-color: #aec086; */
+  /* background-image: url(./food_pattern.svg); */
 }
 
 h1 {
@@ -54,6 +66,17 @@ h1 {
   text-align: center;
   display: inline-block;
   font-size: 16px;
+}
+
+.profilebox {
+  border: 5px outset #a08c7d;
+  background-color:#d3d3d3;
+  text-align: center;
+}
+
+.Logo{
+  /* transform: translate(0%, 0); */
+  background-color: #aec086;
 }
 
 .search-form {
@@ -129,6 +152,7 @@ h1 {
   position: relative;
   border-radius: 0.5rem;
   box-shadow: 2rem 3rem 5rem #a08c7d;
+  font-size: 1.5rem;
 }
 
 .recipe h2 {

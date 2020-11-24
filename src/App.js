@@ -12,16 +12,19 @@ import Error from './components/Error';
 import Navigation from './components/Navigation';
 import MyProfile from './components/MyProfile';
 import EditProfile from './components/EditProfile';
+import Contribute from './components/Contribute';
 import { AuthProvider } from './Auth';
 import { ReactComponent as Logo } from './foodie_logo.svg';
-
+// import background from './tempimagefood.jpg';
 //import fire from './fire';
 
+// const image = { uri: './tempimagefood.jpg' };
 
 const App = () => {
 
   return (
     <div className="App">
+
      <div class="Logo">
       <Logo />
       </div>
@@ -33,6 +36,7 @@ const App = () => {
               <Route path="/" exact component={Home}/>
               <Route path="/MyProfile" component={MyProfile}/>
               <Route path="/about" component={About}/>
+              <Route path="/Contribute" component={Contribute}/>
               {/* <Route component={Error}/> */}
               </Switch>
               <Route path="/LogIn" component={LogIn}/>

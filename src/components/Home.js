@@ -14,7 +14,8 @@ const Home = () => {
     const [query, setQuery] = useState("");
     const [recipes, setRecipes] = useState([]);
     const [alert, setAlert] = useState("");
-
+    const [mealType, setmealType] = useState("");
+   
   
     const APP_ID = "37ec03f1";
     const APP_KEY = "2083bb6ed4fb63408c27d6714fba7ae6";
@@ -37,6 +38,7 @@ const Home = () => {
     };
   
     const onChange = e => setQuery(e.target.value);
+    const onChangeMeal = e => setmealType(e.target.value);
   
     const onSubmit = e => {
       e.preventDefault();
@@ -52,23 +54,41 @@ const Home = () => {
     return (
        <div>
           <form onSubmit={onSubmit} className="search-form">
+
             {alert !== "" && <Alert alert={alert} />}
             <input
               type="text"
               name="query"
               onChange={onChange}
               value={query}
-              autoComplete="off"
+              autoComplete="on"
               placeholder="Search Food"
             />
             <input type="submit" value="Search" />
           </form>
+
+
+          <form onChangeMeal={onChangeMeal} className="mealsearch-form">
+          <select name="mealPlan"> 
+              <option value="none" selected disabled hidden>Select an Option</option>
+              <option value={mealType}>Breakfast</option>
+              <option value={mealType}>Lunch</option>
+              <option value={mealType}>Dinner</option>
+              <option value={mealType}>Snack</option>
+              <option value={mealType}>Teatime</option>
+            </select>
+            <button type="button" class="nbutton" type="submit">Apply Filters</button>
+            </form>
+
+
+
           <div className="recipes">
             {recipes !== [] &&
               recipes.map(recipe => <Recipe key={uuidv4()} recipe={recipe} />)}
           </div>
           <button class="button" onClick={() => app.auth().signOut()}>Log Out</button> 
        </div>
+       
     );
 }
  

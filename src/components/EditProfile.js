@@ -1,19 +1,30 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, {Component, useCallback, useContext, useState } from "react";
 import { withRouter, Redirect } from "react-router";
 import { AuthContext } from "./../Auth.js";
 import { NavLink } from "react-router-dom";
 import app from "./../base";
+// import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+//import Autocomplete from './Autocomplete';
+//import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 
 const EditProfile = ({ history }) => {
+
+  // const { isLoaded, loadError } = useLoadScript({
+  //   googleMapsApiKey: "AIzaSyBAY1PxVKVmMzUk93pm81Qizsyy8PdEW2c",
+  //   libraries
+  // });
+
+  
     
   const currentUser = app.auth().currentUser;
   
   const handleSave = useCallback(async event => {
     event.preventDefault();
-    const { fname, lname, dietPlan } = event.target.elements;
+    const { fname, lname, age, weight, height, country, dietPlan } = event.target.elements;
     
     try {
-        console.log("fname", fname.value, "lname", lname.value, "dietPlan", dietPlan.value);
+    
+        console.log("fname", fname.value, "lname", lname.value, "age", age.value, "weight", weight.value, "country", country.value, "dietPlan", dietPlan.value);
  
         const userId = currentUser.uid;
 
@@ -22,6 +33,10 @@ const EditProfile = ({ history }) => {
           email: currentUser.email,
           fname: fname.value,
           lname: lname.value,
+          age: age.value,
+          weight: weight.value,
+          height: height.value,
+          country: country.value,
           dietPlan : dietPlan.value
         };
     
@@ -41,9 +56,26 @@ const EditProfile = ({ history }) => {
     <div>
       <h1>Edit Your Profile</h1>
       <form onSubmit={handleSave}>
-          <label>First Name: <input type="text" name="fname"/></label>
+      <div class="profilebox"><label>First Name: <input type="text" name="fname"/></label></div>
           <br/>
-          <label>Last Name:<input type="text" name="lname"/></label>
+      <div class="profilebox"><label>Last Name: <input type="text" name="lname"/></label></div>
+          <br/>
+      <div class="profilebox"><label>Age: <input type="text" name="age"/></label></div>
+          <br/>
+      <div class="profilebox"><label>Weight: <input type="text" name="weight"/> lbs.</label></div>
+          <br/>
+      <div class="profilebox"><label>Height: <input type="text" name="height"/> in.</label></div>
+           <br/> <br/>
+          <label> 
+           
+    {/* <GooglePlacesAutocomplete
+      apiKey="AIzaSyBAY1PxVKVmMzUk93pm81Qizsyy8PdEW2c"
+    /> */}
+  
+  Country:<input type="text" name="country"
+  //  placeholder={"country"
+  // }
+              /></label>
           <br/>
           <label>Your Diet Plan:
             <select name="dietPlan"> 
@@ -57,7 +89,7 @@ const EditProfile = ({ history }) => {
             </select>
           </label>
           <br/>
-          <button type="button" type="submit">Save</button>
+          <button type="button" input id="autocomplete" class="nbutton" type="submit">Save</button>
       </form>
 
     </div>

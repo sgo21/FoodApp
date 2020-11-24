@@ -22,15 +22,28 @@ const SignUp = ({ history }) => {
             email: userEmail,
             fname: "",
             lname: "",
-            dietPlan : "",
-            savedMeals: []
+            age: "",
+            weight: "",
+            height: "",
+            country: "",
+            dietPlan : ""
         };
+
+        const savedMealsData = {
+          user: userId,
+          email: userEmail,
+          savedMeals: [{
+            name: "No meals saved",
+            ref: ""
+          }]
+        }
         
         // const newUserKey = app.database().ref().child('users').push().key;
 
         const updates = {};
         updates['/users/' + userId] = userData;
-
+        updates['/users-savedmeals/' + userId] = savedMealsData;
+        
         app.database().ref().update(updates);
         
       history.push("/");
