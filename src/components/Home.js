@@ -14,13 +14,23 @@ const Home = () => {
     const [query, setQuery] = useState("");
     const [recipes, setRecipes] = useState([]);
     const [alert, setAlert] = useState("");
-    const [mealType, setmealType] = useState("");
+    // const [mealType, setmealType] = useState("");
+    const [diet, setdiet] = useState("");
    
   
     const APP_ID = "37ec03f1";
     const APP_KEY = "2083bb6ed4fb63408c27d6714fba7ae6";
   
-    const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+
+    // you should make it so that it checks if query/diet value is not equal to ""
+    let url;
+    if (diet !== "") {
+      url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&diet=${diet}`;
+    }
+    else{
+      url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+    }
+
   
     const getData = async () => {
       if (query !== "") {
@@ -30,15 +40,23 @@ const Home = () => {
         }
         console.log(result);
         setRecipes(result.data.hits);
-        setQuery("");
         setAlert("");
       } else {
         setAlert("Please fill the form");
       }
     };
   
-    const onChange = e => setQuery(e.target.value);
-    const onChangeMeal = e => setmealType(e.target.value);
+    const onChange = e => {
+      e.preventDefault();
+      console.log(e.target.value);
+      setQuery(e.target.value);
+    }
+
+    const onChangeDiet = e => {
+      e.preventDefault();
+      console.log(e.target.value);
+      setdiet(e.target.value);
+    };
   
     const onSubmit = e => {
       e.preventDefault();
@@ -46,6 +64,7 @@ const Home = () => {
     };
 
     const { currentUser } = useContext(AuthContext);
+    let qvalue;
 
     if (!currentUser) {
       return <Redirect to="/LogIn" />;
@@ -59,16 +78,22 @@ const Home = () => {
             <input
               type="text"
               name="query"
-              onChange={onChange}
-              value={query}
+              onChange = {onChange}
               autoComplete="on"
               placeholder="Search Food"
             />
-            <input type="submit" value="Search" />
+            <select name="diet" onChange={onChangeDiet}> 
+              <option value="" selected disabled hidden>Select an Option</option>
+              <option value="balanced">Balanced</option>
+              <option value="high-protein">High-Protein</option>
+              <option value="low-carb">Low-Carb</option>
+              <option value="low-fat">Low-Fat</option>
+            </select>
+            <button class="button" type="submit">Search</button>
           </form>
 
 
-          <form onChangeMeal={onChangeMeal} className="mealsearch-form">
+          {/* <form onChangeMeal={onChangeMeal} className="mealsearch-form">
           <select name="mealPlan"> 
               <option value="none" selected disabled hidden>Select an Option</option>
               <option value={mealType}>Breakfast</option>
@@ -77,10 +102,11 @@ const Home = () => {
               <option value={mealType}>Snack</option>
               <option value={mealType}>Teatime</option>
             </select>
-            <button type="button" class="nbutton" type="submit">Apply Filters</button>
-            </form>
+            <button type="button" class="nbutton" type="submit">Apply</button>
+            </form> */}
+            
 
-
+            
 
           <div className="recipes">
             {recipes !== [] &&

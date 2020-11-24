@@ -68,14 +68,8 @@ const EditProfile = ({ history }) => {
            <br/> <br/>
           <label> 
            
-    {/* <GooglePlacesAutocomplete
-      apiKey="AIzaSyBAY1PxVKVmMzUk93pm81Qizsyy8PdEW2c"
-    /> */}
   
-  Country:<input type="text" name="country"
-  //  placeholder={"country"
-  // }
-              /></label>
+          <div class="profilebox">Country:<input type="text" name="country"/></div></label>
           <br/>
           <label>Your Diet Plan:
             <select name="dietPlan"> 

@@ -85,17 +85,17 @@ const MyProfile = () => {
          <br/> <br/>
          <div class="profilebox"><label>First Name: {fname}</label> </div>
          <br/> <br/>
-         <div class="profilebox"><p>Last Name: {lname}</p> </div>
+         <div class="profilebox"><label>Last Name: {lname}</label> </div>
          <br/> <br/>
-         <p>Age: {age}</p>  
+         <div class="profilebox"><label>Age: {age}</label>  </div>
          <br/> <br/>
-         <p>Weight: {weight} lbs.</p>  
+         <div class="profilebox"><label>Weight: {weight} lbs.</label>  </div>
          <br/> <br/>
-         <p>Height: {height} in.</p>  
+         <div class="profilebox"><label>Height: {height} in.</label>  </div>
          <br/> <br/>
-         <p>BMI: {bmi}</p>  
+         <div class="profilebox"><label>BMI: {bmi}</label>  </div>
          <br/> <br/>
-         <p>Country: {country}</p>  
+         <div class="profilebox"><label>Country: {country}</label>  </div>
          <br/> <br/>
          <p>Diet Plan: {dietPlan}</p>  
          <br/>

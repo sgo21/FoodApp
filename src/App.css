@@ -77,6 +77,10 @@ h1 {
 .Logo{
   /* transform: translate(0%, 0); */
   background-color: #aec086;
+  border-style: solid;
+  border-width: 3px;
+  border-color: white;
+  border-radius: 10px;
 }
 
 .search-form {
@@ -90,7 +94,9 @@ h1 {
   margin-bottom: 5rem;
   margin-top: 5rem;
   box-shadow: 1rem 2rem 5rem #aaa;
-  position: relative;
+  position: center;
+  box-align: center;
+  text-align: center;
 }
 
 .alert {
@@ -215,6 +221,10 @@ h1 {
   overflow: hidden;
   background-color: #aec086;
   text-align:center;
+  border-style: solid;
+  border-width: 3px;
+  border-color: white;
+  border-radius: 10px;
 }
 
 .nav-bar p {
