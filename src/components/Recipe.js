@@ -19,64 +19,20 @@ const Recipe = ({ recipe }) => {
       const savedMealsRef = app.database().ref('users-savedmeals/' + currentUser.uid + '/savedMeals');
       const updateMealsRef = app.database().ref('users-savedmeals/' + currentUser.uid);
 
-      let mealsArray;
-      savedMealsRef.on('value', (snapshot) =>{
-        mealsArray = snapshot.val();
-        let newSavedMealsArray = mealsArray.push(savedMeal);
+      savedMealsRef.once('value', (snapshot) =>{
+        let meals = snapshot.val();
+        let mealsArray = [];
+        for (let i = 0; i < meals.length; i++){
+          mealsArray.push(meals[i]);
+        }
+        mealsArray.push(savedMeal);
         let savedMealsData = {
           user: currentUser.uid,
           email: currentUser.email,
-          savedMeals: newSavedMealsArray
+          savedMeals: mealsArray
         };
         updateMealsRef.set(savedMealsData);
-      });
-      
-
-      // const usersRef = app.database().ref().child("users-savedmeals");
-
-      // let mealsArrayRef = usersRef.child(currentUser.uid).child("savedMeals");
-
-      // //mealsArrayRef.once('value').then(snapshot => snapshot.val()).then(value => setMealsArray([value]));
-
-      // mealsArrayRef.once('value', function(snap) {
-      //   let i = 0;
-      //   snap.forEach(function(userSnap) {
-      //      console.log(userSnap.key(), i++, userSnap.val());
-      //   });
-      // });
-
-      // //console.log(mealsArray);
-
-      // // let savedMealsArray;
-      // // usersRef.child(currentUser.uid).child("savedMeals").on('value', (snapshot) =>{
-      // //     snapshot.forEach(function(item) {
-      // //       var itemVal = item.val();
-      // //       console.log(itemVal);
-      // //     });
-          
-      // //     //savedMealsArray = snapshot.val();
-      // // });
-
-      // let savedMealsData;
-      // // if (savedMealsArray == null){
-      // //   console.log("first time saving a meal");
-      // //   savedMealsData = {
-      // //     user: currentUser.uid,
-      // //     email: currentUser.email,
-      // //     savedMeals: [savedMeal]
-      // //   }
-      // //   console.log(savedMealsData.savedMeals);
-      // // }
-      // // else{
-      // //   console.log("have already saved a meal");
-      // //   let newSavedMealsArray = savedMealsArray.push(savedMeal);
-      // //   savedMealsData = {
-      // //     user: currentUser.uid,
-      // //     email: currentUser.email,
-      // //     savedMeals: newSavedMealsArray
-      // //   }
-      // // }
-      
+      });   
   }
 
   return (

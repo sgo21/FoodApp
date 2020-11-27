@@ -1,28 +1,27 @@
-// import React from 'react';
 import React, { useState, useContext } from "react";
-// import "./App.css";
 import Axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Recipe from "./Recipe";
 import Alert from "./Alert";
 import app from "./../base";
 import { AuthContext } from "./../Auth.js";
-import { withRouter, Redirect } from "react-router";
+import { Redirect } from "react-router";
+import useAutocomplete from 'use-autocomplete';
+import foodNames from './FoodNames';
+//npm i use-autocomplete
  
 const Home = () => {
 
     const [query, setQuery] = useState("");
     const [recipes, setRecipes] = useState([]);
     const [alert, setAlert] = useState("");
-    // const [mealType, setmealType] = useState("");
     const [diet, setdiet] = useState("");
+    const [completions] = useAutocomplete(query, foodNames);
+
    
-  
     const APP_ID = "37ec03f1";
     const APP_KEY = "2083bb6ed4fb63408c27d6714fba7ae6";
   
-
-    // you should make it so that it checks if query/diet value is not equal to ""
     let url;
     if (diet !== "") {
       url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&diet=${diet}`;
@@ -31,8 +30,8 @@ const Home = () => {
       url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
     }
 
-  
     const getData = async () => {
+      console.log(query);
       if (query !== "") {
         const result = await Axios.get(url);
         if (!result.data.more) {
@@ -47,7 +46,7 @@ const Home = () => {
     };
   
     const onChange = e => {
-      e.preventDefault();
+      // e.preventDefault();
       console.log(e.target.value);
       setQuery(e.target.value);
     }
@@ -64,7 +63,6 @@ const Home = () => {
     };
 
     const { currentUser } = useContext(AuthContext);
-    let qvalue;
 
     if (!currentUser) {
       return <Redirect to="/LogIn" />;
@@ -79,7 +77,8 @@ const Home = () => {
               type="text"
               name="query"
               onChange = {onChange}
-              autoComplete="on"
+              value={query}
+              autoComplete="off"
               placeholder="Search Food"
             />
             <select name="diet" onChange={onChangeDiet}> 
@@ -92,21 +91,9 @@ const Home = () => {
             <button class="button" type="submit">Search</button>
           </form>
 
-
-          {/* <form onChangeMeal={onChangeMeal} className="mealsearch-form">
-          <select name="mealPlan"> 
-              <option value="none" selected disabled hidden>Select an Option</option>
-              <option value={mealType}>Breakfast</option>
-              <option value={mealType}>Lunch</option>
-              <option value={mealType}>Dinner</option>
-              <option value={mealType}>Snack</option>
-              <option value={mealType}>Teatime</option>
-            </select>
-            <button type="button" class="nbutton" type="submit">Apply</button>
-            </form> */}
-            
-
-            
+          <div className="popout-container">
+            {completions.slice(0,10).map((val, index) => ( <div className="popout-item"><button id ="autocomplete-selection" value = {val} onClick={e => setQuery(e.target.value)} key={index}>{val}</button></div>))}
+          </div>
 
           <div className="recipes">
             {recipes !== [] &&

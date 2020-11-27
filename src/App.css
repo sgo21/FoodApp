@@ -256,3 +256,27 @@ h1 {
   font-size: 70%;
   color: #a08c7d;
 }
+
+.popout-container {
+  /* background: rgb(40,44,52, 0.5); */
+  margin: auto;
+  width: auto;
+}
+
+.popout-item {
+  border: thin solid white;
+}
+
+#autocomplete-selection {
+  background-color: rgb(40,44,52, 0);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;  
+  margin: auto;
+}
