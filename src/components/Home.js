@@ -8,7 +8,6 @@ import { AuthContext } from "./../Auth.js";
 import { Redirect } from "react-router";
 import useAutocomplete from 'use-autocomplete';
 import foodNames from './FoodNames';
-//npm i use-autocomplete
  
 const Home = () => {
 
@@ -16,7 +15,9 @@ const Home = () => {
     const [recipes, setRecipes] = useState([]);
     const [alert, setAlert] = useState("");
     const [diet, setdiet] = useState("");
-    const [completions] = useAutocomplete(query, foodNames);
+    const [autoquery, setAutoQuery] = useState("");
+    const [completions] = useAutocomplete(autoquery, foodNames);
+
 
    
     const APP_ID = "37ec03f1";
@@ -31,14 +32,14 @@ const Home = () => {
     }
 
     const getData = async () => {
-      console.log(query);
       if (query !== "") {
         const result = await Axios.get(url);
         if (!result.data.more) {
+          setAutoQuery("");
           return setAlert("This food does not exist");
         }
-        console.log(result);
         setRecipes(result.data.hits);
+        setAutoQuery("");
         setAlert("");
       } else {
         setAlert("Please fill the form");
@@ -47,13 +48,13 @@ const Home = () => {
   
     const onChange = e => {
       // e.preventDefault();
-      console.log(e.target.value);
       setQuery(e.target.value);
+      setAutoQuery(e.target.value);
+      
     }
 
     const onChangeDiet = e => {
       e.preventDefault();
-      console.log(e.target.value);
       setdiet(e.target.value);
     };
   
@@ -89,11 +90,11 @@ const Home = () => {
               <option value="low-fat">Low-Fat</option>
             </select>
             <button class="button" type="submit">Search</button>
-          </form>
 
-          <div className="popout-container">
-            {completions.slice(0,10).map((val, index) => ( <div className="popout-item"><button id ="autocomplete-selection" value = {val} onClick={e => setQuery(e.target.value)} key={index}>{val}</button></div>))}
-          </div>
+            <div className="popout-container"> 
+            {completions.slice(0,10).map((val, index) => ( <div className="popout-item"><button id ="autocomplete-selection" value = {val} onClick={e => {setQuery(e.target.value); setAutoQuery(e.target.value);}} type = "submit" key={index}>{val}</button></div>))}
+            </div> 
+          </form>
 
           <div className="recipes">
             {recipes !== [] &&

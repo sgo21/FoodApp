@@ -261,6 +261,7 @@ h1 {
   /* background: rgb(40,44,52, 0.5); */
   margin: auto;
   width: auto;
+  display: block;
 }
 
 .popout-item {
