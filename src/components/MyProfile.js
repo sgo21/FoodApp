@@ -1,22 +1,26 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Redirect} from "react-router";
 import { NavLink } from "react-router-dom";
 import app from "./../base";
 import SavedMeals from "./SavedMeals";
+import { AuthContext } from "./../Auth.js";
 //import { Node, Context } from 'react-mathjax';
 //import { Fraction, toTex } from 'algebra.js';
 
 const MyProfile = () => {
 
    const currentUser = app.auth().currentUser;
+   const [mealsArray, setMealsArray] = useState([]);
 
-   const fnameRef = app.database().ref('users/' + currentUser.uid + '/fname');
-   const lnameRef = app.database().ref('users/' + currentUser.uid + '/lname');
-   const ageRef = app.database().ref('users/' + currentUser.uid + '/age');
-   const weightRef = app.database().ref('users/' + currentUser.uid + '/weight');
-   const heightRef = app.database().ref('users/' + currentUser.uid + '/height');
-   const countryRef = app.database().ref('users/' + currentUser.uid + '/country');
-   const dietPlanRef = app.database().ref('users/' + currentUser.uid + '/dietPlan');
+   const database = app.database();
+
+   const fnameRef = database.ref('users/' + currentUser.uid + '/fname');
+   const lnameRef = database.ref('users/' + currentUser.uid + '/lname');
+   const ageRef = database.ref('users/' + currentUser.uid + '/age');
+   const weightRef = database.ref('users/' + currentUser.uid + '/weight');
+   const heightRef = database.ref('users/' + currentUser.uid + '/height');
+   const countryRef = database.ref('users/' + currentUser.uid + '/country');
+   const dietPlanRef = database.ref('users/' + currentUser.uid + '/dietPlan');
    
    let fname;
    fnameRef.on('value', (snapshot) =>{
@@ -53,54 +57,57 @@ const MyProfile = () => {
       dietPlan = snapshot.val();
    });
    
-   if (!currentUser) {
-      return <Redirect to="/LogIn" />;
-   }
-
    let bmi;
    if (weight >= 0 && height >= 0){
       weight = parseInt(weight);
       height = parseInt(height);
       bmi = ((weight*703)/(height*height)).toFixed(2);
    }
-   
 
-   // function Formula(props) {
-   //    return (
-   //      <Context input="tex">
-   //        <Node inline>{props.tex}</Node>
-   //      </Context>
-   //    );
-   //  }
-   // const a= weight;
-   // const b= height;
-   //  const answer = a.multiply(b);
-   //  const question = <Formula tex={`${toTex(a)} × ${toTex(b)} = ${toTex(answer)}`} />;
+   if (!currentUser) {
+      return <Redirect to="/LogIn" />;
+   }
+
+   const savedMealsRef = database.ref('users-savedmeals/' + currentUser.uid + '/savedMeals');
+   savedMealsRef.once('value', (snapshot) => {
+      setMealsArray(snapshot.val());
+   });
+
+   //    // console.log("inside ref snapshot thing : " + mealsArray[0].name);
+   //    // document.getElementsByClassName("favorites")[0].innerHTML = mealsArray.map(meal => <p>{meal.name}</p>);
+   // });
+
    // // // GO TO FIREBASE AND READ THE DATA FOR THE CURRENT USER AND POPULATE THOSE PROFILE FIELDS
 
    return (
       <div>
          <h1>My Profile</h1>  <br /> 
-         <div class="profilebox"><label>Email Address: {currentUser.email}</label> </div>
+         <label>Email Address: {currentUser.email}</label>
          <br/> <br/>
-         <div class="profilebox"><label>First Name: {fname}</label> </div>
+         <label>First Name: {fname}</label> 
          <br/> <br/>
-         <div class="profilebox"><label>Last Name: {lname}</label> </div>
+         <label>Last Name: {lname}</label>
          <br/> <br/>
-         <div class="profilebox"><label>Age: {age}</label>  </div>
+         <label>Age: {age}</label>
          <br/> <br/>
-         <div class="profilebox"><label>Weight: {weight} lbs.</label>  </div>
+         <label>Weight: {weight} lbs.</label>
          <br/> <br/>
-         <div class="profilebox"><label>Height: {height} in.</label>  </div>
+         <label>Height: {height} in.</label>
          <br/> <br/>
-         <div class="profilebox"><label>BMI: {bmi}</label>  </div>
+         <label>BMI: {bmi}</label>
          <br/> <br/>
-         <div class="profilebox"><label>Country: {country}</label>  </div>
+         <label>Country: {country}</label>
          <br/> <br/>
-         <p>Diet Plan: {dietPlan}</p>  
+         <label>Diet Plan: {dietPlan}</label>  
          <br/>
          <br/> 
-         <button className="nbutton"><NavLink to="/EditProfile" > Edit Your Profile </NavLink></button>
+         <NavLink to="/EditProfile" className="nbutton"> Edit Your Profile </NavLink>
+         
+         <div className="favorites">
+            <h1>Saved Meals</h1>
+            {mealsArray !== [] && mealsArray.slice(1, mealsArray.length).map(meal => <div><a href={meal.ref}>{meal.name}</a></div>)}
+            {/* {mealsArray !== [] && mealsArray.map(meal => <SavedMeals meal={meal} />)} */}
+         </div>
       </div>
    );
 }

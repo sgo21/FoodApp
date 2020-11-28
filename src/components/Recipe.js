@@ -8,7 +8,7 @@ const Recipe = ({ recipe }) => {
   let saved = false;
   let repeat = false;
 
-  async function addToFavorites(){
+  function addToFavorites(){
 
       const currentUser = app.auth().currentUser;
       const savedMealsRef = app.database().ref('users-savedmeals/' + currentUser.uid + '/savedMeals');
@@ -22,6 +22,8 @@ const Recipe = ({ recipe }) => {
       savedMealsRef.once('value', (snapshot) =>{
         let meals = snapshot.val();
         let mealsArray = [];
+
+        console.log(meals);
 
         //gets all the current meals in the ref
         for (let i = 0; i < meals.length; i++){
@@ -59,8 +61,6 @@ const Recipe = ({ recipe }) => {
       <h2>{label}</h2>
       <img src={image} alt={label} />
       <button id="save-meal-button" onClick={() => addToFavorites()}>Save to Favorites ❤️</button>
-      {saved && <p>Recipe added to favorites!</p>}
-      {repeat && <p>Recipe was already added!</p>}
       <p className={label}></p>
       <a href={url} target="_blank" rel="noopener noreferrer">
         View Recipe
