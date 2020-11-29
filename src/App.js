@@ -3,7 +3,7 @@ import React from 'react';
 import "./App.css";
 
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import LogIn from './components/LogIn';
@@ -24,10 +24,7 @@ const App = () => {
 
   return (
     <div className="App">
-
-     <div class="Logo">
-      <Logo />
-      </div>
+      <div class="Logo"><Logo /></div>
       <AuthProvider>
         <BrowserRouter>
             <div className="nav-bar">

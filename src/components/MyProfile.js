@@ -1,9 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect} from "react-router";
 import { NavLink } from "react-router-dom";
 import app from "./../base";
 import SavedMeals from "./SavedMeals";
-import { AuthContext } from "./../Auth.js";
 //import { Node, Context } from 'react-mathjax';
 //import { Fraction, toTex } from 'algebra.js';
 
@@ -104,8 +103,8 @@ const MyProfile = () => {
          <NavLink to="/EditProfile" className="nbutton"> Edit Your Profile </NavLink>
          
          <div className="favorites">
-            <h1>Saved Meals</h1>
-            {mealsArray !== [] && mealsArray.slice(1, mealsArray.length).map(meal => <div><a href={meal.ref}>{meal.name}</a></div>)}
+            <h2>My Saved Meals</h2>
+            {mealsArray !== [] && mealsArray.slice(1, mealsArray.length).map(meal => <SavedMeals meal={meal} />)}
             {/* {mealsArray !== [] && mealsArray.map(meal => <SavedMeals meal={meal} />)} */}
          </div>
       </div>
