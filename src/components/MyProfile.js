@@ -5,6 +5,7 @@ import app from "./../base";
 import SavedMeals from "./SavedMeals";
 //import { Node, Context } from 'react-mathjax';
 //import { Fraction, toTex } from 'algebra.js';
+const currentUser = app.auth().currentUser;
 
 const MyProfile = () => {
 
@@ -105,6 +106,7 @@ const MyProfile = () => {
          <div className="favorites">
             <h2>My Saved Meals</h2>
             {mealsArray !== [] && mealsArray.slice(1, mealsArray.length).map(meal => <SavedMeals meal={meal} />)}
+
             {/* {mealsArray !== [] && mealsArray.map(meal => <SavedMeals meal={meal} />)} */}
          </div>
       </div>
