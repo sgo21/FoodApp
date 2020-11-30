@@ -55,7 +55,7 @@ const SignUp = ({ history }) => {
   //const database = app.database();
 
   return (
-    <div>
+    <div className = "mainContent">
       <h1>Sign up</h1>
       <form onSubmit={handleSignUp}>
         <label>
@@ -68,7 +68,7 @@ const SignUp = ({ history }) => {
           <input name="password" type="password" placeholder="Password" />
         </label>
         <br /> 
-        <button class="button" type="submit">Sign Up</button>
+        <button class="button" type="submit" className="nbutton bigger">Sign Up</button>
       </form>
       <NavLink to="/LogIn" className="nbutton"> Already have an account? Log In. </NavLink>
     </div>

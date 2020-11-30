@@ -73,41 +73,33 @@ const MyProfile = () => {
       setMealsArray(snapshot.val());
    });
 
-   //    // console.log("inside ref snapshot thing : " + mealsArray[0].name);
-   //    // document.getElementsByClassName("favorites")[0].innerHTML = mealsArray.map(meal => <p>{meal.name}</p>);
-   // });
-
-   // // // GO TO FIREBASE AND READ THE DATA FOR THE CURRENT USER AND POPULATE THOSE PROFILE FIELDS
-
    return (
-      <div>
-         <h1>My Profile</h1>  <br /> 
-         <label>Email Address: {currentUser.email}</label>
-         <br/> <br/>
-         <label>First Name: {fname}</label> 
-         <br/> <br/>
-         <label>Last Name: {lname}</label>
-         <br/> <br/>
-         <label>Age: {age}</label>
-         <br/> <br/>
-         <label>Weight: {weight} lbs.</label>
-         <br/> <br/>
-         <label>Height: {height} in.</label>
-         <br/> <br/>
-         <label>BMI: {bmi}</label>
-         <br/> <br/>
-         <label>Country: {country}</label>
-         <br/> <br/>
-         <label>Diet Plan: {dietPlan}</label>  
-         <br/>
-         <br/> 
-         <NavLink to="/EditProfile" className="nbutton"> Edit Your Profile </NavLink>
-         
+      <div className = "mainContent">
+         <h1>My Profile</h1>
+         <div className = "info">
+            <label><strong>Email Address:</strong> {currentUser.email}</label>
+            <br/> <br/>
+            <label><strong>First Name:</strong> {fname}</label> 
+            <br/> <br/>
+            <label><strong>Last Name:</strong> {lname}</label>
+            <br/> <br/>
+            <label><strong>Age:</strong> {age}</label>
+            <br/> <br/>
+            <label><strong>Weight:</strong> {weight} lbs.</label>
+            <br/> <br/>
+            <label><strong>Height:</strong> {height} in.</label>
+            <br/> <br/>
+            <label><strong>BMI:</strong> {bmi}</label>
+            <br/> <br/>
+            <label><strong>Country:</strong> {country}</label>
+            <br/> <br/>
+            <label><strong>Diet Plan:</strong> {dietPlan}</label>  
+            <br/><br/><br/> 
+            <NavLink to="/EditProfile" className="nbutton"> Edit Your Profile </NavLink>
+         </div>
          <div className="favorites">
             <h2>My Saved Meals</h2>
             {mealsArray !== [] && mealsArray.slice(1, mealsArray.length).map(meal => <SavedMeals meal={meal} />)}
-
-            {/* {mealsArray !== [] && mealsArray.map(meal => <SavedMeals meal={meal} />)} */}
          </div>
       </div>
    );

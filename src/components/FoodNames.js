@@ -251,7 +251,6 @@ const foodNames = [
     "donut",
     "éclair",
     "gulab jamun",
-    "kouign-amann",
     "mille-feuille",
     "morning bun",
     "pain au chocolat",

@@ -39,9 +39,9 @@ const SavedMeals = ({ meal }) => {
 
 
     return (
-        <div className = {name}>
-            <a href={ref} target="_blank" rel="noopener noreferrer">{name}</a>
-            <button id="remove-meal-button" onClick={() => removeFavorite()}>Remove From Favorites</button>
+        <div className="saved-meal-card">
+            <a class="recipe-link" href={ref} target="_blank" rel="noopener noreferrer">{name}</a>
+            <button class="remove-meal-button" className="nbutton" onClick={() => removeFavorite()}>Remove From Favorites</button>
         </div>
     );
 };

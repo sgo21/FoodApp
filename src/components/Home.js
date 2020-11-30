@@ -50,7 +50,11 @@ const Home = () => {
       // e.preventDefault();
       setQuery(e.target.value);
       setAutoQuery(e.target.value);
-      
+      if (e.target.value == "") {
+        document.getElementsByClassName("popout-container")[0].style.display = "none";
+      } else {
+        document.getElementsByClassName("popout-container")[0].style.display = "inline-block";
+      }
     }
 
     const onChangeDiet = e => {
@@ -60,6 +64,8 @@ const Home = () => {
   
     const onSubmit = e => {
       e.preventDefault();
+      console.log(query);
+      document.getElementsByClassName("popout-container")[0].style.display = "none";
       getData();
     };
 
@@ -70,37 +76,42 @@ const Home = () => {
     }
 
     return (
-       <div>
+       <div className = "mainContent">
+          {alert !== "" && <Alert alert={alert} />}
           <form onSubmit={onSubmit} className="search-form">
+            <div className="input-bar">
 
-            {alert !== "" && <Alert alert={alert} />}
-            <input
-              type="text"
-              name="query"
-              onChange = {onChange}
-              value={query}
-              autoComplete="off"
-              placeholder="Search Food"
-            />
-            <select name="diet" onChange={onChangeDiet}> 
-              <option value="" selected disabled hidden>Select an Option</option>
-              <option value="balanced">Balanced</option>
-              <option value="high-protein">High-Protein</option>
-              <option value="low-carb">Low-Carb</option>
-              <option value="low-fat">Low-Fat</option>
-            </select>
-            <button class="button" type="submit">Search</button>
+                <input
+                  type="text"
+                  name="query"
+                  onChange = {onChange}
+                  value={query}
+                  autoComplete="off"
+                  placeholder="Search Food"
+                />
+
+              <select id= "diet-filter-dropdown" name="diet" onChange={onChangeDiet} value={diet}> 
+                <option value="" selected disabled hidden>Select an Option</option>
+                <option value="balanced">Balanced</option>
+                <option value="high-protein">High-Protein</option>
+                <option value="low-carb">Low-Carb</option>
+                <option value="low-fat">Low-Fat</option>
+              </select>
+
+              <button class="nbutton bigger" type="submit">Search</button>
+              </div>
 
             <div className="popout-container"> 
-            {completions.slice(0,10).map((val, index) => ( <div className="popout-item"><button id ="autocomplete-selection" value = {val} onClick={e => {setQuery(e.target.value); setAutoQuery(e.target.value);}} type = "submit" key={index}>{val}</button></div>))}
+              {completions.slice(0,10).map((val, index) => ( <button id ="autocomplete-selection" value = {val} onClick={e => {setQuery(val); setAutoQuery(val);}} type= "submit" key={index}>{val}</button>))}
             </div> 
+
           </form>
 
           <div className="recipes">
             {recipes !== [] &&
               recipes.map(recipe => <Recipe key={uuidv4()} recipe={recipe} />)}
           </div>
-          <button class="button" onClick={() => app.auth().signOut()}>Log Out</button> 
+          <button class="nbutton bigger" onClick={() => app.auth().signOut()}>Log Out</button> 
        </div>
        
     );

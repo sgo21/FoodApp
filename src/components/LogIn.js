@@ -29,20 +29,20 @@ const LogIn = ({ history }) => {
   }
 
   return (
-    <div style={{alignItems:'center'}}>
+    <div className = "mainContent" style={{alignItems:'center'}}>
       <h1>Log in</h1>
       <form onSubmit={handleLogin}>
         <label>
-          Email : 
+          Email: 
           <input name="email" type="email" placeholder="Email" />
-        </label>
-        <br /> 
+        </label><br/>
+        
         <label>
-          Password : 
+          Password: 
           <input name="password" type="password" placeholder="Password" />
         </label>
         <br /> 
-        <button class="button" type="submit">Log in</button>
+        <button class="button" type="submit" className="nbutton bigger">Log in</button><br/>
       </form>
       <NavLink to="/SignUp" className="nbutton"> New User? Create an account. </NavLink>
     </div>
